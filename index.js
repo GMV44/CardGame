@@ -3,8 +3,6 @@ class Card {
         this.rank = rank;
         this.suit = suit;
     }
-
-
 }
 
 class Hand {
@@ -27,13 +25,28 @@ class Hand {
 class Deck {
     constructor() {
         this.arrayOfCards = [];
-        this.rank = [1,2,3,4,5,6,7,8,9,10,"J","Q","K"];
-        this.suit = ["diamond","spade","clover","hearts"];
         
     }
     generateCards(){
-        let rank = [1,2,3,4,5,6,7,8,9,'10',"J","Q","K"];
-        let suit = ["diamond","spade","clover","hearts"];
+        let A = 1
+        let Two = 2
+        let Three = 3
+        let Four = 4
+        let Five = 5
+        let Six = 6
+        let Seven = 7
+        let Eight = 8
+        let Nine = 9
+        let Ten = 10
+        let Jack = 11
+        let Queen = 12
+        let King = 13
+        let diamond = "diamond"
+        let clover = "clover"
+        let hearts = "hearts"
+        let spade = "spade"
+        let rank = [A, Two, Three, Four, Five, Six, Seven, Eight, Nine, Ten, Jack, Queen, King];
+        let suit = [diamond, clover, hearts, spade];
 
         for(let s of suit){
             for(let r of rank){
@@ -41,18 +54,34 @@ class Deck {
             }
         }
     }
+    shuffleCards() {
+        let shuffledDeck = []
+        // const deck = this.arrayOfCards
+        let m = this.arrayOfCards.length;
+        let i;
+        while (m){
+            i = Math.floor(Math.random() * m--) ;
+            shuffledDeck.push(this.arrayOfCards[i])
+        }  
+    this.arrayOfCards = shuffledDeck
+    }
+    draw() {
+        let fieldArray = []
+        for (let i=0; i<1; i++) {
+        fieldArray.push(this.arrayOfCards[i])
+        this.arrayOfCards.shift()
+        console.log(fieldArray)
+    } } 
+    
 } 
 
 
-let newCard = new Card(2, "diamond");
-let newCard2 = new Card(3, "diamond");
-let hand1 = new Hand();
-hand1.addCard(newCard)
-hand1.addCard(newCard2)
-console.log(hand1.arrayOfCards)
-hand1.playCard(newCard2)
-console.log(hand1.arrayOfCards)
+
+
 const d = new Deck();
 d.generateCards();
-console.log(d.arrayOfCards);
-
+// console.log(d.arrayOfCards);
+d.shuffleCards()
+console.log(d.arrayOfCards)
+d.draw()
+console.log(d.arrayOfCards)
